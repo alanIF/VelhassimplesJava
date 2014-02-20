@@ -1,0 +1,151 @@
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+
+
+public class Velha47 implements ActionListener{
+    int j; 
+    int vez;
+  
+private JButton[] btn  = new JButton[9];
+public Velha47(){
+      JFrame frm = new JFrame("Jogo da velha");
+      frm.setSize(500,500);
+      frm.setLocation(100,100);
+      
+      
+      JMenuBar menu = new JMenuBar();
+      JMenu menu2 = new JMenu("Jogo");
+      JMenuItem jogo = new JMenuItem("Novo"); 
+      JMenuItem sair = new JMenuItem("Sair");
+      frm.setJMenuBar(menu);
+      menu.add(menu2);
+      menu2.add(jogo);
+      menu2.add(sair);
+      
+      jogo.addActionListener(new ActionListener(){
+         @Override
+            public void actionPerformed(ActionEvent e) {
+        for(int k=0;k<9;k++){
+            
+            btn[k].setText("");
+            btn[k].setEnabled(true);
+        }          
+            }
+    
+});
+      
+  sair.addActionListener(new ActionListener(){
+         @Override
+            public void actionPerformed(ActionEvent e) {
+       System.exit(0);
+            }
+
+    
+});
+      
+      JPanel panel = new JPanel(new GridLayout(3,3));
+      frm.add(panel);
+      frm.setVisible(true);
+      frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      int i = 0;
+    
+      vez=1;
+      while(i<9){
+          
+          btn[i]=new JButton();
+          panel.add(btn[i]);
+          i++;
+      }
+
+while(j<9){
+btn[j].addActionListener(this);
+       j++;
+       
+            } 
+
+ 
+}
+
+public static void main(String[] args) {
+ 
+  Velha47 j = new Velha47();
+ 
+    
+
+
+ }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton bt = (JButton)e.getSource();
+        if(vez==1){
+        bt.setText("X");
+        
+        vez=2;
+        bt.setEnabled(false);
+        ver();
+       }else{
+            bt.setText("O");
+          vez=1;
+          bt.setEnabled(false);
+           ver();
+       }
+       
+        
+    }
+    public void ver() {
+
+if (btn[0].getText() == "X" && btn[1].getText() == "X" && btn[2].getText() == "X"
+|| btn[3].getText() == "X" && btn[4].getText() == "X" && btn[5].getText() == "X"
+|| btn[6].getText() == "X" && btn[7].getText() == "X" && btn[8].getText() == "X"
+|| btn[0].getText() == "X" && btn[3].getText() == "X" && btn[6].getText() == "X"
+|| btn[1].getText() == "X" && btn[4].getText() == "X" && btn[7].getText() == "X"
+|| btn[2].getText() == "X" && btn[5].getText() == "X" && btn[8].getText() == "X"
+|| btn[0].getText() == "X" && btn[4].getText() == "X" && btn[8].getText() == "X"
+|| btn[2].getText() == "X" && btn[4].getText() == "X" && btn[6].getText() == "X") {
+JOptionPane.showMessageDialog(null, "Jogador 1 Ganhou!");
+     
+        for(int k=0;k<9;k++){
+            
+            btn[k].setText("");
+            btn[k].setEnabled(true);
+        }          
+            
+
+} else if(btn[0].getText() == "O" && btn[1].getText() == "O" && btn[2].getText() == "O"
+|| btn[3].getText() == "O" && btn[4].getText() == "O" && btn[5].getText() == "O"
+|| btn[6].getText() == "O" && btn[7].getText() == "O" && btn[8].getText() == "O"
+|| btn[0].getText() == "O" && btn[3].getText() == "O" && btn[6].getText() == "O"
+|| btn[1].getText() == "O" && btn[4].getText() == "O" && btn[7].getText() == "O"
+|| btn[2].getText() == "O" && btn[5].getText() == "O" && btn[8].getText() == "O"
+|| btn[0].getText() == "O" && btn[4].getText() == "O" && btn[8].getText() == "O"
+|| btn[2].getText() == "O" && btn[4].getText() == "O" && btn[6].getText() == "O") {
+JOptionPane.showMessageDialog(null, "Jogador 2 Ganhou!");
+for(int k=0;k<9;k++){
+            
+            btn[k].setText("");
+            btn[k].setEnabled(true);
+        }
+        
+}else if (btn[0].getText() !="" & btn[1].getText() !="" & btn[2].getText() !="" &
+btn[3].getText() !="" & btn[4].getText() !="" & btn[5].getText() !="" &
+btn[6].getText() !="" & btn[7].getText() !="" & btn[8].getText() !="" ) {
+JOptionPane.showMessageDialog(null, "Empate!");
+for(int k=0;k<9;k++){
+            
+            btn[k].setText("");
+            btn[k].setEnabled(true);
+        }
+}
+}
+
+ 
+    
+    
+    
+    
+}
